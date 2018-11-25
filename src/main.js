@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router/router'
 import store from './store/store'
+import firebase from 'firebase'
 
 // import Cognito from './aws/cognito' このcognitoファイルではクラスごとエクスポートしている。
 // なのでこのあと、newしてVueインスタンスに詰めることでシングルトンにして、
@@ -9,6 +10,16 @@ import store from './store/store'
 // 他のやり方が無いか模索しても良いかも
 
 Vue.config.productionTip = false
+// Initialize Firebase
+const config = {
+  apiKey: 'AIzaSyAWG8d36JFOtRWfkEcDTA2gwWkD_EdPW0Y',
+  authDomain: 'login-app-9644d.firebaseapp.com',
+  databaseURL: 'https://login-app-9644d.firebaseio.com',
+  projectId: 'login-app-9644d',
+  storageBucket: 'login-app-9644d.appspot.com',
+  messagingSenderId: '288214090031'
+}
+firebase.initializeApp(config)
 
 // locale.use(lang)
 
@@ -33,6 +44,28 @@ Vue.config.productionTip = false
 //   }
 //   next()
 // })
+// router.beforeEach((to, from, next) => {
+//   store.commit('view/start')
+//   next()
+// })
+// router.afterEach((to, from, next) => {
+//   store.commit('view/end')
+// })
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        next()
+      } else {
+        next({
+          path: '/sinin',
+          query: { redirect: to.fullPath }
+        })
+      }
+    })
+  }
+  next()
+})
 
 new Vue({
   router,

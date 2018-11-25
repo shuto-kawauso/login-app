@@ -1,12 +1,24 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <!--<SignUp/>-->
+    <!--<div id="nav">-->
+      <!--<router-link to="/" >About</router-link> |-->
+      <!--<router-link to="/product" >Product List</router-link>-->
+    <!--</div>-->
+    <!--<LoadingOverlay/>-->
+    <!--<transition name="view">-->
+      <router-view/>
+    <!--</transition>-->
   </div>
 </template>
+
+<script>
+import LoadingOverlay from './components/LoadingOverlay'
+import SignUp from './views/SignUp'
+export default {
+  components: {SignUp, LoadingOverlay }
+}
+</script>
 
 <style lang="scss">
 #app {
