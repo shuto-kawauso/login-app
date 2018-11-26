@@ -1,5 +1,6 @@
 <template>
   <div class="product-list">
+    <TheSubHeader/>
     <div id="nav">
       <router-link to="/" >About</router-link> |
       <router-link to="/product" >Product List</router-link>
@@ -15,12 +16,25 @@
 
 <script>
 import products from '../api/products'
-
+import TheSubHeader from '@/components/TheSubHeader.vue'
 export default {
-  // beforeRouteEnter (to, from, next) {
-  //   setTimeout(next, 1000)
-  // },
+  beforeRouteLeave (to, from, next) {
+    const loading = this.$loading({
+      lock: true,
+      text: 'Loading',
+      spinner: 'el-icon-loading',
+      background: 'rgba(0, 0, 0, 0.7)'
+    })
+    setTimeout(() => {
+      loading.close()
+      next()
+    }, 500)
+    // setTimeout(next, 1000)
+  },
   name: 'ProductList',
+  components: {
+    TheSubHeader
+  },
   computed: { // apiを呼ぶのでdataではなくcomputedを使う。
     list: () => products.fetch()
   }

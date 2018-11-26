@@ -2,12 +2,12 @@
   <div class="sign-up">
     <h2>Sign Up</h2>
     <div class="input-form-wrapper">
-      <input type="text" placeholder="e-Mail" v-model="mail"/>
+      <el-input type="text" placeholder="e-Mail" v-model="mail"/>
     </div>
     <div class="input-form-wrapper">
-      <input type="password" placeholder="Password" v-model="password"/>
+      <el-input type="password" placeholder="Password" v-model="password"/>
     </div>
-    <button @click="signUp">Sign Up</button>
+    <el-button @click="signUp">Sign Up</el-button>
     <p>Do you have an account?
       <router-link to="/signIn">Sign in!</router-link>
     </p>

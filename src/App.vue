@@ -1,22 +1,16 @@
 <template>
-  <div id="app">
-    <!--<SignUp/>-->
-    <!--<div id="nav">-->
-      <!--<router-link to="/" >About</router-link> |-->
-      <!--<router-link to="/product" >Product List</router-link>-->
-    <!--</div>-->
-    <!--<LoadingOverlay/>-->
-    <!--<transition name="view">-->
-      <router-view/>
-    <!--</transition>-->
-  </div>
+  <el-container id="app">
+    <el-header id="nav"><TheGlobalHeader/></el-header>
+    <router-view/>
+  </el-container>
 </template>
 
 <script>
-import LoadingOverlay from './components/LoadingOverlay'
-import SignUp from './views/SignUp'
+import TheGlobalHeader from '@/components/TheGlobalHeader.vue'
 export default {
-  components: {SignUp, LoadingOverlay }
+  components: {
+    TheGlobalHeader
+  }
 }
 </script>
 
@@ -29,7 +23,7 @@ export default {
   color: #2c3e50;
 }
 #nav {
-  padding: 30px;
+  padding: 10px;
   a {
     font-weight: bold;
     color: #2c3e50;

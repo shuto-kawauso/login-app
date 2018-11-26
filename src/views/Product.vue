@@ -1,5 +1,6 @@
 <template>
   <div class="product">
+    <TheSubHeader/>
     <nav class="nav">
       <router-link to="/" >About</router-link> |
       <router-link to="/product" >Product List</router-link>
@@ -17,9 +18,9 @@
 </template>
 
 <script>
-import LoadingOverlay from '../components/LoadingOverlay'
+import TheSubHeader from '@/components/TheSubHeader.vue'
 export default {
-  components: { LoadingOverlay },
+  components: { TheSubHeader },
   name: 'Product',
   beforeDestroy () {
     this.$store.dispatch('product/destroy')

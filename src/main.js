@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router/router.js'
 import store from './store/store'
 import firebase from 'firebase'
+import ElementUI from 'element-ui'
+import locale from 'element-ui/lib/locale/lang/ja'
+import 'element-ui/lib/theme-chalk/index.css'
 
 // import Cognito from './aws/cognito' このcognitoファイルではクラスごとエクスポートしている。
 // なのでこのあと、newしてVueインスタンスに詰めることでシングルトンにして、
@@ -10,6 +13,7 @@ import firebase from 'firebase'
 // 他のやり方が無いか模索しても良いかも
 
 Vue.config.productionTip = false
+Vue.use(ElementUI, { locale })
 // Initialize Firebase
 const config = {
   apiKey: 'AIzaSyAWG8d36JFOtRWfkEcDTA2gwWkD_EdPW0Y',
@@ -58,7 +62,7 @@ router.beforeEach((to, from, next) => {
         next()
       } else {
         next({
-          path: '/sinin',
+          path: '/signin',
           query: { redirect: to.fullPath }
         })
       }

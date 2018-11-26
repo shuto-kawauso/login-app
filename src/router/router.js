@@ -17,8 +17,7 @@ export default new Router({
     {
       path: '/',
       name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
-      meta: { requiresAuth: true }
+      component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
     },
     {
       path: '/product',
