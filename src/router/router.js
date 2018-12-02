@@ -14,6 +14,24 @@ export default new Router({
       name: 'dashbord',
       component: () => import(/* webpackChunkName: "dashbord" */ '@/views/Dashbord.vue'),
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/charts',
+      name: 'charts',
+      component: () => import(/* webpackChunkName: "charts" */ '@/views/BillBoardCharts.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/mypage',
+      name: 'mypage',
+      component: () => import(/* webpackChunkName: "mypage" */ '@/views/MyPage.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/albums/:id',
+      name: 'albums',
+      component: () => import(/* webpackChunkName: "specifiedAlbum" */ '@/views/SpecifiedAlbum.vue'),
+      meta: { requiresAuth: true }
     }
     //
     // ,{
