@@ -53,20 +53,29 @@ export default {
     height: 50px;
     width: 50px;
   }
-.username-box {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 6.5vh;
-}
-.user {
-  color: #0c0e13;
-  font-size: 18px;
-  padding-right: 5px;
-}
-.username {
-  color: #0c0e13;
-  font-size: 18px;
-  margin-right: 30px;
-}
+  .username-box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 6.5vh;
+  }
+  .user {
+    color: #0c0e13;
+    font-size: 18px;
+    padding-right: 5px;
+  }
+  .username {
+    color: #0c0e13;
+    font-size: 18px;
+    margin-right: 30px;
+  }
+  .v-enter-active {
+    transition: opacity 1.5s;
+  }
+  .v-leave-active {
+    transition: opacity 0.5s;
+  }
+  .v-enter, .v-leave-to {
+    opacity: 0;
+  }
 </style>
