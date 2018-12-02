@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import products from '../api/products'
+import products from '../../api/products'
 import TheSubHeader from '@/components/TheSubHeader.vue'
 export default {
   beforeRouteLeave (to, from, next) {
