@@ -18,7 +18,7 @@ export default new Router({
     {
       path: '/charts',
       name: 'charts',
-      component: () => import(/* webpackChunkName: "charts" */ '@/views/BillBoardCharts.vue'),
+      component: () => import(/* webpackChunkName: "charts" */ '@/views/MusicCharts.vue'),
       meta: { requiresAuth: true }
     },
     {

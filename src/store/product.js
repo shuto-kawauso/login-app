@@ -15,7 +15,6 @@ export default {
     setReview (state, { review }) { state.review = review },
     clear (state) {
       state.detail = {}
-      // state.review = {}
     }
   },
   actions: {

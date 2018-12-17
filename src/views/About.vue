@@ -127,8 +127,9 @@ export default {
           // The user's ID, unique to the Firebase project. Do NOT use
           // this value to authenticate with your backend server, if
           // you have one. Use User.getToken() instead.
-          sessionStorage.setItem('currentUser', JSON.stringify(currentUser))
+          localStorage.setItem('currentUser', JSON.stringify(currentUser))
         }
+        // Todo:ここで明示的にリダイレクトして上げる必要あり？？
         // console.log('user', user)
       }).catch(function (error) {
         // Handle Errors here.

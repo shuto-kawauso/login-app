@@ -6,6 +6,7 @@ import firebase from 'firebase'
 import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/ja'
 import 'element-ui/lib/theme-chalk/index.css'
+import AsyncComputed from 'vue-async-computed'
 
 // import Cognito from './aws/cognito' このcognitoファイルではクラスごとエクスポートしている。
 // なのでこのあと、newしてVueインスタンスに詰めることでシングルトンにして、
@@ -14,6 +15,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI, { locale })
+Vue.use(AsyncComputed)
 // Initialize Firebase
 const config = {
   apiKey: 'AIzaSyAWG8d36JFOtRWfkEcDTA2gwWkD_EdPW0Y',

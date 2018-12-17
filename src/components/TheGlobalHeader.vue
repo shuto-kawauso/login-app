@@ -5,7 +5,7 @@
         <router-link to="/"><img class="global-header-icon" src="@/assets/logo.png"/></router-link>
           <el-dropdown
             trigger="click"
-            v-if="currentUser && $route.path !== '/'"
+            v-if="currentUser || $route.path !== '/'"
             class="username-box"
           >
             <span class="el-dropdown-link">
@@ -31,14 +31,14 @@ export default {
   name: 'TheGlobalHeader',
   computed: {
     currentUser: function () {
-      return sessionStorage.getItem('currentUser') ? JSON.parse(sessionStorage.getItem('currentUser')) : undefined
+      return localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : undefined
     }
   },
   methods: {
     signOut: function () {
       firebase.auth().signOut().then(() => {
         console.log('signout is success!')
-        sessionStorage.removeItem('currentUser')
+        localStorage.removeItem('currentUser')
         this.$router.push('/')
       })
     }

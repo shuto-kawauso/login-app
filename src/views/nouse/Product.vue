@@ -13,7 +13,6 @@
     <transition name="view">
       <router-view/>
     </transition>
-    <!--<LoadingOverlay/>-->
   </div>
 </template>
 
