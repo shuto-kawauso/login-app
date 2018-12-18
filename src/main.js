@@ -60,7 +60,7 @@ firebase.initializeApp(config)
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
+      if (user && localStorage.getItem('currentUser')) {
         next()
       } else {
         next({

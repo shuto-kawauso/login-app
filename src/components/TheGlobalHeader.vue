@@ -5,7 +5,7 @@
         <router-link to="/"><img class="global-header-icon" src="@/assets/logo.png"/></router-link>
           <el-dropdown
             trigger="click"
-            v-if="currentUser || $route.path !== '/'"
+            v-if="currentUser && $route.path !== '/'"
             class="username-box"
           >
             <span class="el-dropdown-link">
@@ -29,9 +29,14 @@
 import firebase from 'firebase'
 export default {
   name: 'TheGlobalHeader',
-  computed: {
-    currentUser: function () {
-      return localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : undefined
+  data () {
+    return {
+      currentUser: undefined
+    }
+  },
+  watch: {
+    '$route': function () {
+      this.currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : undefined
     }
   },
   methods: {

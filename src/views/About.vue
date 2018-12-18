@@ -53,7 +53,7 @@ export default {
   // login済みの場合はdashBordにリダイレクトする。
   beforeRouteEnter (to, from, next) {
     firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
+      if (user && localStorage.getItem('currentUser')) {
         next({
           path: '/dashbord',
           query: { redirect: to.fullPath }
@@ -115,8 +115,7 @@ export default {
     signInAndSignUpWithGoogle: async function () {
       console.log('signIn Or signUp with google!')
       const provider = new firebase.auth.GoogleAuthProvider()
-      firebase.auth().signInWithPopup(provider).then(function (result) {
-        // The signed-in user info.
+      await firebase.auth().signInWithPopup(provider).then(function (result) {
         const user = result.user
         const currentUser = {}
         if (user != null) {
@@ -124,42 +123,38 @@ export default {
           currentUser.email = user.email
           currentUser.photoUrl = user.photoURL
           currentUser.uid = user.uid
-          // The user's ID, unique to the Firebase project. Do NOT use
-          // this value to authenticate with your backend server, if
-          // you have one. Use User.getToken() instead.
           localStorage.setItem('currentUser', JSON.stringify(currentUser))
         }
-        // Todo:ここで明示的にリダイレクトして上げる必要あり？？
-        // console.log('user', user)
       }).catch(function (error) {
-        // Handle Errors here.
         const errorCode = error.code
         const errorMessage = error.message
-        // The email of the user's account used.
         const email = error.email
-        // The firebase.auth.AuthCredential type that was used.
         const credential = error.credential
         console.error('code', errorCode, 'message', errorMessage, 'mail', email, 'credential', credential)
       })
+      this.$router.push('/dashbord')
     },
     signInAndSignUpWithFacebook: async function () {
       console.log('signIn Or signUp with facebook!')
-      // 成功したらdashbordに飛ばす。
       const provider = new firebase.auth.FacebookAuthProvider()
-      firebase.auth().signInWithPopup(provider).then(function (result) {
-        // The signed-in user info.
+      await firebase.auth().signInWithPopup(provider).then(function (result) {
         const user = result.user
-        console.log('user', user)
+        const currentUser = {}
+        if (user != null) {
+          currentUser.name = user.displayName
+          currentUser.email = user.email
+          currentUser.photoUrl = user.photoURL
+          currentUser.uid = user.uid
+          localStorage.setItem('currentUser', JSON.stringify(currentUser))
+        }
       }).catch(function (error) {
-        // Handle Errors here.
         const errorCode = error.code
         const errorMessage = error.message
-        // The email of the user's account used.
         const email = error.email
-        // The firebase.auth.AuthCredential type that was used.
         const credential = error.credential
         console.error('code', errorCode, 'message', errorMessage, 'mail', email, 'credential', credential)
       })
+      this.$router.push('/dashbord')
     }
   }
 
