@@ -88,42 +88,8 @@ export default {
   },
   data () {
     return {
-      username: '',
-      mail: '',
-      password: '',
       isSignInDialogShown: false,
-      isSignUpDialogShown: false,
-      validationLastChangeOfSignInForm: true,
-      signInForm: {
-        mail: '',
-        password: ''
-      },
-      signUpForm: {
-        mail: '',
-        password: ''
-      },
-      signInFormRules: {
-        mail: { pattern: '^[0-9A-Za-z@]+$', message: 'すべて半角英数字で入力してください。', trigger: 'change' },
-        password: { pattern: '^[0-9A-Za-z]{6,20}$', message: '全て半角数字(6文字以上20文字以内)で入力してください。', trigger: 'change' }
-      }
-    }
-  },
-  watch: {
-    isSignUpDialogShown: function () {
-      if (this.isSignUpDialogShown === false) {
-        this.signUpForm = {
-          password: '',
-          mail: ''
-        }
-      }
-    },
-    isSignInDialogShown: function () {
-      if (this.isSignInDialogShown === false) {
-        this.signInForm = {
-          password: '',
-          mail: ''
-        }
-      }
+      isSignUpDialogShown: false
     }
   },
   methods: {
@@ -154,7 +120,6 @@ export default {
         const credential = error.credential
         console.error('code', errorCode, 'message', errorMessage, 'mail', email, 'credential', credential)
       })
-
       this.$router.push('/dashbord')
     },
     signInAndSignUpWithFacebook: async function () {
@@ -179,7 +144,6 @@ export default {
       this.$router.push('/dashbord')
     }
   }
-
 }
 </script>
 

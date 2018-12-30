@@ -49,8 +49,6 @@
 <script>
 import firebase from 'firebase'
 export default {
-  // listを読み込めたらあとはチャート画面と同じ
-  // 編集ボタンを押したら詳細画面へ遷移。メソッドいらない？route-linkとかでよいかも。
   name: 'Dashbord',
   created: async function () {
     const _this = this
@@ -141,8 +139,6 @@ export default {
   }
   .bottom {
     margin: 0 auto;
-    /*position: absolute;*/
-    /*bottom: 5px;*/
     line-height: 10px;
   }
   .image {

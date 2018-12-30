@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import billboard from '@/api/billboard.js'
+import billboard from '@/api/chart.js'
 import firebase from 'firebase'
 
 export default {
@@ -125,8 +125,6 @@ export default {
   }
   .bottom {
     margin: 0 auto;
-    /*position: absolute;*/
-    /*bottom: 5px;*/
     line-height: 10px;
   }
   .add-button {
@@ -137,13 +135,11 @@ export default {
     width: 100%;
     display: block;
   }
-
   .clearfix:before,
   .clearfix:after {
     display: table;
     content: "";
   }
-
   .clearfix:after {
     clear: both
   }

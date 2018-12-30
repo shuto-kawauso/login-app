@@ -100,7 +100,6 @@ export default {
   .user-photo{
     width: 150px;
   }
-
   .user-name {
     color: grey;
     font-weight: bold;

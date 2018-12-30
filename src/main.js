@@ -8,14 +8,10 @@ import locale from 'element-ui/lib/locale/lang/ja'
 import 'element-ui/lib/theme-chalk/index.css'
 import AsyncComputed from 'vue-async-computed'
 
-// import Cognito from './aws/cognito' このcognitoファイルではクラスごとエクスポートしている。
-// なのでこのあと、newしてVueインスタンスに詰めることでシングルトンにして、
-// 各コンポーネントからはインスタンス変数として呼び出せるようになっている。
-// 他のやり方が無いか模索しても良いかも
-
 Vue.config.productionTip = false
 Vue.use(ElementUI, { locale })
 Vue.use(AsyncComputed)
+
 // Initialize Firebase
 const config = {
   apiKey: 'AIzaSyAWG8d36JFOtRWfkEcDTA2gwWkD_EdPW0Y',
@@ -27,36 +23,6 @@ const config = {
 }
 firebase.initializeApp(config)
 
-// locale.use(lang)
-
-// Vue.use()
-
-// Vue.mixin()
-
-// const cognito = new Cognito()
-// router.beforeEach((to, from, next)=> {
-//   if (to.matched.some(record => record.meta.requiresAuth)) {
-//     cognito.isAuthenticated()
-//       .then(session => {
-//         next()
-//       })
-//       .catch(e => {
-//         console.error(e)
-//         next({
-//           path: '/login',
-//           query: {redirect: to.fullPath}
-//         })
-//       })
-//   }
-//   next()
-// })
-// router.beforeEach((to, from, next) => {
-//   store.commit('view/start')
-//   next()
-// })
-// router.afterEach((to, from, next) => {
-//   store.commit('view/end')
-// })
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -76,8 +42,5 @@ router.beforeEach((to, from, next) => {
 new Vue({
   router,
   store,
-  // cognito,
-  // ここに入れると、どのコンポーネントでもthis.$cognito.methodでcognitoファイルのなかを使える。
-  // その意味は要検討。cognitoのオブジェクトは一つのほうが良いからかな？
   render: h => h(App)
 }).$mount('#app')

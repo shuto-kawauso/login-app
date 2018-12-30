@@ -65,10 +65,9 @@ export default {
   }
   .global-header-icon {
     float: left;
-    padding-left: 20px;
-    padding-top: 5px;
-    height: 50px;
-    width: 50px;
+    padding: 5px 20px;
+    height: 40px;
+    width: 40px;
   }
   .username-box {
     display: flex;
