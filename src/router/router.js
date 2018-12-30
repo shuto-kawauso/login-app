@@ -26,12 +26,6 @@ export default new Router({
       name: 'mypage',
       component: () => import(/* webpackChunkName: "mypage" */ '@/views/MyPage.vue'),
       meta: { requiresAuth: true }
-    },
-    {
-      path: '/albums/:id',
-      name: 'albums',
-      component: () => import(/* webpackChunkName: "specifiedAlbum" */ '@/views/SpecifiedAlbum.vue'),
-      meta: { requiresAuth: true }
     }
     //
     // ,{

@@ -1174,19 +1174,19 @@ const chart =
         },
         'image': [
           {
-            '#text': 'https://lastfm-img2.akamaized.net/i/u/34s/55c80851fd8e3e21d5dded0d4d2a6e1c.png',
+            '#text': 'https://lastfm-img2.akamaized.net/i/u/avatar170s/8befddf1e8bca6348222ddf2cc8a367f',
             'size': 'small'
           },
           {
-            '#text': 'https://lastfm-img2.akamaized.net/i/u/64s/55c80851fd8e3e21d5dded0d4d2a6e1c.png',
+            '#text': 'https://lastfm-img2.akamaized.net/i/u/avatar170s/8befddf1e8bca6348222ddf2cc8a367f',
             'size': 'medium'
           },
           {
-            '#text': 'https://lastfm-img2.akamaized.net/i/u/174s/55c80851fd8e3e21d5dded0d4d2a6e1c.png',
+            '#text': 'https://lastfm-img2.akamaized.net/i/u/avatar170s/8befddf1e8bca6348222ddf2cc8a367f',
             'size': 'large'
           },
           {
-            '#text': 'https://lastfm-img2.akamaized.net/i/u/300x300/55c80851fd8e3e21d5dded0d4d2a6e1c.png',
+            '#text': 'https://lastfm-img2.akamaized.net/i/u/avatar170s/8befddf1e8bca6348222ddf2cc8a367f',
             'size': 'extralarge'
           }
         ]

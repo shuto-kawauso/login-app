@@ -13,6 +13,12 @@
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>
+                <router-link tag='li' to="/dashbord">Dashbord</router-link>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <router-link tag='li' to="/charts">Chart</router-link>
+              </el-dropdown-item>
+              <el-dropdown-item>
                 <router-link tag='li' to="/mypage">MyPage</router-link>
               </el-dropdown-item>
               <el-dropdown-item>
@@ -42,7 +48,7 @@ export default {
   methods: {
     signOut: function () {
       firebase.auth().signOut().then(() => {
-        console.log('signout is success!')
+        console.log('signOut is success!')
         localStorage.removeItem('currentUser')
         this.$router.push('/')
       })

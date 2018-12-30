@@ -63,6 +63,29 @@ export default {
       }
     })
   },
+  beforeRouteLeave: async function (to, from, next) {
+    const loading = this.$loading({
+      lock: true,
+      text: 'Loading',
+      spinner: 'el-icon-loading',
+      background: 'rgba(0, 0, 0, 0.7)'
+    })
+    try {
+      const toBeInsertedUser = JSON.parse(localStorage.getItem('currentUser'))
+      await firebase.database().ref(`users/${toBeInsertedUser.uid}`).set({
+        name: toBeInsertedUser.name,
+        email: toBeInsertedUser.email,
+        photoUrl: toBeInsertedUser.photoUrl,
+        profile: '',
+        albums: []
+      })
+      loading.close()
+      next()
+    } catch (e) {
+      console.error(e)
+      loading.close()
+    }
+  },
   data () {
     return {
       username: '',
@@ -113,9 +136,8 @@ export default {
       this.isSignInDialogShown = true
     },
     signInAndSignUpWithGoogle: async function () {
-      console.log('signIn Or signUp with google!')
       const provider = new firebase.auth.GoogleAuthProvider()
-      await firebase.auth().signInWithPopup(provider).then(function (result) {
+      await firebase.auth().signInWithPopup(provider).then(async function (result) {
         const user = result.user
         const currentUser = {}
         if (user != null) {
@@ -132,10 +154,10 @@ export default {
         const credential = error.credential
         console.error('code', errorCode, 'message', errorMessage, 'mail', email, 'credential', credential)
       })
+
       this.$router.push('/dashbord')
     },
     signInAndSignUpWithFacebook: async function () {
-      console.log('signIn Or signUp with facebook!')
       const provider = new firebase.auth.FacebookAuthProvider()
       await firebase.auth().signInWithPopup(provider).then(function (result) {
         const user = result.user

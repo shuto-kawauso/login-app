@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>MusicCharts</h1>
+    <h1>MusicChart</h1>
     <h2>Top10</h2>
     <el-carousel :interval="4000" type="card" height="400px">
       <el-carousel-item v-for="(track, index) in top10" :key="index">
@@ -10,21 +10,21 @@
         <div>
           <h4>Rank: {{index + 1}}</h4>
         <span>{{ track.name }} / <a v-bind:href='track.artist.url' target="_blank">{{track.artist.name}}</a></span>
-          <button class="add-button"> Add Favorite</button>
+          <button class="add-button" @click="addFavorite(track, index)"> Add Favorite</button>
         </div>
       </el-carousel-item>
     </el-carousel>
     <h2>Top 10~50</h2>
     <el-row>
       <el-col :span="4" v-for="(track, index) in tracks" :key="index">
-        <el-card :body-style="{ padding: '0px', height: '330px' }">
+        <el-card class='album-card' :body-style="{ padding: '5px', height: '340px' }">
           <a v-bind:href='track.artist.url' target="_blank"><img v-bind:src='track.image[3]["#text"]' class="image"></a>
-          <div style="padding: 16px;" >
-            <span>{{track.name}}</span> / <a v-bind:href='track.artist.url' target="_blank">{{track.artist.name}}</a>
-            <div class="bottom clearfix">
-              <span>Rank: {{ index + 1 }}</span><button class="add-button"> Add Favorite</button>
-            </div>
+          <div>
+            {{track.name}} / <a v-bind:href='track.artist.url' target="_blank">{{track.artist.name}}</a>
           </div>
+            <div class="bottom clearfix">
+              <span>Rank: {{ index + 1 }}</span><button class="add-button" @click="addFavorite(track, index)"> Add Favorite</button>
+            </div>
         </el-card>
       </el-col>
     </el-row>
@@ -33,6 +33,7 @@
 
 <script>
 import billboard from '@/api/billboard.js'
+import firebase from 'firebase'
 
 export default {
   name: 'MusicCharts',
@@ -59,6 +60,46 @@ export default {
       loading.close()
       return tracks
     }
+  },
+  methods: {
+    addFavorite: async function (track, index) {
+      // loadingMask
+      const loading = this.$loading({
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      })
+      try {
+        // UserIdを取得
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+        await firebase.database().ref(`users/${currentUser.uid}/albums`).push({
+          rank: index + 1,
+          name: track.name,
+          albumPage: track.url,
+          artist: {
+            name: track.artist.name,
+            artistPage: track.artist.url
+          },
+          image: track.image[3]['#text']
+        })
+        loading.close()
+        // 結果を通知する
+        this.$notify({
+          title: 'Success',
+          message: 'Selected song was added to Your Favorite List!',
+          type: 'success'
+        })
+      } catch (e) {
+        loading.close()
+        console.error(e)
+        this.$notify({
+          title: 'Warning',
+          message: `Failed to add.${e}`,
+          type: 'warning'
+        })
+      }
+    }
   }
 }
 </script>
@@ -79,12 +120,18 @@ export default {
   .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
   }
+  .album-card{
+    position: relative;
+  }
   .bottom {
-    margin-top: 10px;
+    margin: 0 auto;
+    /*position: absolute;*/
+    /*bottom: 5px;*/
     line-height: 10px;
   }
   .add-button {
     margin-left: 10px;
+    margin-top: 10px;
   }
   .image {
     width: 100%;

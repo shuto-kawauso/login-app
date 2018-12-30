@@ -29,7 +29,6 @@ export default {
       loading.close()
       next()
     }, 500)
-    // setTimeout(next, 1000)
   },
   name: 'ProductList',
   components: {
