@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/router.js'
-import store from './store/store'
 import firebase from 'firebase'
 import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/ja'
@@ -41,6 +40,5 @@ router.beforeEach((to, from, next) => {
 
 new Vue({
   router,
-  store,
   render: h => h(App)
 }).$mount('#app')
