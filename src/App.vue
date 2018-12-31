@@ -1,12 +1,18 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <el-container id="app">
+    <el-header id="nav"><TheGlobalHeader/></el-header>
     <router-view/>
-  </div>
+  </el-container>
 </template>
+
+<script>
+import TheGlobalHeader from '@/components/TheGlobalHeader.vue'
+export default {
+  components: {
+    TheGlobalHeader
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
@@ -17,7 +23,7 @@
   color: #2c3e50;
 }
 #nav {
-  padding: 30px;
+  padding: 10px;
   a {
     font-weight: bold;
     color: #2c3e50;
