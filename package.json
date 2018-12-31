@@ -13,6 +13,7 @@
     "aws-sdk": "^2.360.0",
     "axios": "^0.18.0",
     "billboard-top-100": "^2.1.2",
+    "dotenv": "^6.2.0",
     "element-ui": "^2.4.11",
     "firebase": "^5.5.9",
     "fontawesome": "^4.7.2",

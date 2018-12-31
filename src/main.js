@@ -6,19 +6,21 @@ import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/ja'
 import 'element-ui/lib/theme-chalk/index.css'
 import AsyncComputed from 'vue-async-computed'
+import processEnv from '../processEnv'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI, { locale })
 Vue.use(AsyncComputed)
 
 // Initialize Firebase
+
 const config = {
-  apiKey: 'AIzaSyAWG8d36JFOtRWfkEcDTA2gwWkD_EdPW0Y',
-  authDomain: 'login-app-9644d.firebaseapp.com',
-  databaseURL: 'https://login-app-9644d.firebaseio.com',
-  projectId: 'login-app-9644d',
-  storageBucket: 'login-app-9644d.appspot.com',
-  messagingSenderId: '288214090031'
+  apiKey: processEnv.API_KEY,
+  authDomain: processEnv.AUTH_DOMAIN,
+  databaseURL: processEnv.DATABASE_URL,
+  projectId: processEnv.PROJECT_ID,
+  storageBucket: processEnv.STORAGE_BUCKET,
+  messagingSenderId: processEnv.MESSAGING_SENDER_ID
 }
 firebase.initializeApp(config)
 
