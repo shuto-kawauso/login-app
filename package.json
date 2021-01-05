@@ -11,7 +11,7 @@
     "amazon-cognito-identity-js": "^3.0.3",
     "aws-api-gateway-client": "^0.2.16",
     "aws-sdk": "^2.360.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "billboard-top-100": "^2.1.2",
     "dotenv": "^6.2.0",
     "element-ui": "^2.4.11",
